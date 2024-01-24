@@ -12,7 +12,6 @@ struct LandmarkApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            DogView()
         }
     }
 }
