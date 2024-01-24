@@ -15,3 +15,5 @@ struct LandmarkApp: App {
         }
     }
 }
+
+// 앱의 윈도우를 관리하는 파일, ContentView()를 부르고있는 형태
