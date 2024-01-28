@@ -18,6 +18,11 @@ struct LandmarkRow: View {
             Text(landmark.name)
             
             Spacer()
+            
+            if landmark.isFavorite {
+                Image(systemName: "star.fill")
+                    .foregroundStyle(.yellow)
+            }
         }
     }
 }
@@ -30,7 +35,8 @@ struct LandmarkRow: View {
      
      View Builder를 사용하여 뷰 그룹을 작성하기 때문에 Group의 이니셜라이저를 사용하여 조건부에서 다른 종류의 뷰를 생성한 다음 선택적으로 수정자를 적용할 수 있다.
      */
-    Group {
+    let landmarks = ModelData().landmarks
+    return Group {
         LandmarkRow(landmark: landmarks[0])
         LandmarkRow(landmark: landmarks[1])
     }

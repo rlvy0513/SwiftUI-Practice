@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    @Environment(ModelData.self) var modelData
+    @State private var showFavoritesOnly = false
+    
+    var filteredLandmarks: [Landmark] {
+        modelData.landmarks.filter { landmark in
+            (!showFavoritesOnly || landmark.isFavorite)
+        }
+    }
+    
     var body: some View {
         /* 111
          List {
@@ -22,19 +31,26 @@ struct LandmarkList: View {
          }
          */
         NavigationSplitView { // 네비케이션
-            List(landmarks) { landmark in
-                NavigationLink { // 랜드마크 디테일 추가
-                    LandmarkDetail(landmark: landmark)
-                }label: { // 랜드마크로우 추가
-                    LandmarkRow(landmark: landmark)
+            List {
+                Toggle(isOn: $showFavoritesOnly) {
+                    Text("Favorites only")
+                }
+                
+                ForEach(filteredLandmarks) { landmark in
+                    NavigationLink { // 랜드마크 디테일 추가
+                        LandmarkDetail(landmark: landmark)
+                    }label: { // 랜드마크로우 추가
+                        LandmarkRow(landmark: landmark)
+                    }
                 }
             }
-            .navigationTitle("Landmarks")
-        } detail: {
+                .animation(.default, value: filteredLandmarks)
+                .navigationTitle("Landmarks")
+            } detail: {
                 Text("Select a Landmark")
+            }
         }
     }
-}
 
 #Preview {
     LandmarkList()
