@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreLocation
+// 기존 swift에서 사용하던 방식, json파일을 디코딩 하기 위해 Codable을 따르도록 구현
 
 struct Landmark: Hashable, Codable, Identifiable {
     var id: Int

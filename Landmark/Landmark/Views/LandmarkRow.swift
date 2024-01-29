@@ -13,7 +13,7 @@ struct LandmarkRow: View {
     var body: some View {
         HStack {
             landmark.image
-                .resizable()
+                .resizable() // frame크기가 아닌, 컨텐트 사이즈를 조정
                 .frame(width: 50, height: 50)
             Text(landmark.name)
             
@@ -39,5 +39,6 @@ struct LandmarkRow: View {
     return Group {
         LandmarkRow(landmark: landmarks[0])
         LandmarkRow(landmark: landmarks[1])
+        // landmarks는 전역에 선언된 ??mock?? 데이터 프로퍼티
     }
 }
