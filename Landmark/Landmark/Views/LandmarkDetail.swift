@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    @Environment(ModelData.self) var modelData
     var landmark: Landmark
 
-
+    var landmarkIndex: Int {
+        modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
+    }
     var body: some View {
-        VStack {
+        @Bindable var modelData = modelData
+        ScrollView {
             // 지도 표시
             MapView(coordinate: landmark.locationCoordinate)
                 .frame(height: 300)
@@ -24,9 +28,11 @@ struct LandmarkDetail: View {
 
 
             VStack(alignment: .leading) {
-                Text(landmark.name) // 랜드마크 이름
-                    .font(.title)
-
+                HStack {
+                    Text(landmark.name) // 랜드마크 이름
+                        .font(.title)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                }
 
                 HStack { // 랜드마크 이름 아래 회색 택스트
                     Text(landmark.park)
@@ -54,5 +60,7 @@ struct LandmarkDetail: View {
 
 
 #Preview {
-    LandmarkDetail(landmark: ModelData().landmarks[0])
+    let modelData = ModelData()
+    return LandmarkDetail(landmark: modelData.landmarks[0])
+        .environment(modelData)
 }
