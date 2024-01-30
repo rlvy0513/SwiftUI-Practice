@@ -16,12 +16,15 @@ struct LandmarkDetail: View {
     }
     var body: some View {
         @Bindable var modelData = modelData
+        // 스크롤 뷰는 내부 컨텐츠의 크기만큼 영역 차지
         ScrollView {
             // 지도 표시
             MapView(coordinate: landmark.locationCoordinate)
+                .ignoresSafeArea(edges: .top) // ignoreSafeArea를 통해 위쪽 safeArea를 침범하지 않도록 설정
                 .frame(height: 300)
 
             // 이미지 표시
+            // CircleImage를 추가하고 offset을 통해서 맵 위에 이미지가 얹혀지는 형태로 구현
             CircleImage(image: landmark.image)
                 .offset(y: -130)
                 .padding(.bottom, -130)
