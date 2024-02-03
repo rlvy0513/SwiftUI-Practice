@@ -54,7 +54,7 @@ struct LandmarkDetail: View {
             .padding()
         }
         .navigationTitle(landmark.name)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline) // 네비게이션 타이틀을 위쪽 중앙으로 배치
     }
 }
 
