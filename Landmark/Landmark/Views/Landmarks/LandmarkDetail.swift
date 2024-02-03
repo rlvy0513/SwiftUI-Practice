@@ -47,17 +47,14 @@ struct LandmarkDetail: View {
 
 
                 Divider() // 구분 선
-
-
                 Text("About \(landmark.name)")
                     .font(.title2)
                 Text(landmark.description)
             }
             .padding()
-
-
-            Spacer()
         }
+        .navigationTitle(landmark.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

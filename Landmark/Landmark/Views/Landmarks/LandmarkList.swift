@@ -51,13 +51,13 @@ struct LandmarkList: View {
                     }
                 }
             }
-                .animation(.default, value: filteredLandmarks)
-                .navigationTitle("Landmarks")
-            } detail: {
-                Text("Select a Landmark")
-            }
+            .animation(.default, value: filteredLandmarks)
+            .navigationTitle("Landmarks")
+        } detail: {
+            Text("Select a Landmark")
         }
     }
+}
 
 #Preview {
     LandmarkList()
