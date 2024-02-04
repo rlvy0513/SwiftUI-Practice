@@ -4,8 +4,8 @@ struct GraphCapsule: View, Equatable {
     var index: Int
     var color: Color
     var height: CGFloat
-    var range: Range<Double>
-    var overallRange: Range<Double>
+    var range: Range<Double> // Capsule의 값을 의미
+    var overallRange: Range<Double> // 전체 Capsule들을 한꺼번에 봤을 때의 range값
 
     var heightRatio: CGFloat {
         max(CGFloat(magnitude(of: range) / magnitude(of: overallRange)), 0.15)
