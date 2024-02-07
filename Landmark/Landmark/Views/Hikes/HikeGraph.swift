@@ -3,8 +3,18 @@ import SwiftUI
 struct HikeGraph: View {
     var hike: Hike
     var path: KeyPath<Hike.Observation, Range<Double>>
-
+    /*
+     path에 KeyPath를 사용하는 이유
+            KeyPath를 사용하면 프로퍼티를 enum타입의 case와 같이 사용이 가능
+            (switch로 분류하여 각각 프로퍼티에 해당되는 값 분기가 가능함)
+     
+     KeyPath 사용법
+        첫 번째 인수 값(Hike.Observation) 사용 - 조건문에서 사용
+        '(path ==\.elevation)'
+        두 번째 인수 값 사용 - '인스턴스[keyPath: Path]' (각 프로퍼티에 해당되는 값을 얻을 수 있음)
+     */
     var color: Color {
+        // KeyPath를 통해 분기하여 각 프로퍼티마다 색상을 다르게 적용
         switch path {
         case \.elevation:
             return .gray
@@ -40,6 +50,7 @@ struct HikeGraph: View {
     }
 }
 
+// 각 데이터를 처리하여 적절한 값을 가져오게하는 헬퍼함수 정의
 func rangeOfRanges<C: Collection>(_ ranges: C) -> Range<Double>
     where C.Element == Range<Double> {
     guard !ranges.isEmpty else { return 0..<0 }

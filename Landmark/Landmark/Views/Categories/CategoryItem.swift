@@ -10,7 +10,8 @@ import SwiftUI
 
 struct CategoryItem: View {
     var landmark: Landmark
-
+    
+    // 스크롤 뷰에 들어갈 아이템 1개 만들기
     var body: some View {
         VStack(alignment: .leading) {
             landmark.image
